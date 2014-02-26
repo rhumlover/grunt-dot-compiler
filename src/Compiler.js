@@ -32,6 +32,7 @@ var Compiler = function(opt) {
     var defaultTemplateSettings = {
       evaluate:    /\{\{([\s\S]+?)\}\}/g,
       interpolate: /\{\{=([\s\S]+?)\}\}/g,
+      helper:      /\{\{@([\s\S]+?)\}\}/g,
       encode:      /\{\{!([\s\S]+?)\}\}/g,
       use:         /\{\{#([\s\S]+?)\}\}/g,
       define:      /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
@@ -202,6 +203,9 @@ Compiler.prototype.compileTemplates = function(files) {
   js += 'String.prototype.encodeHTML=encodeHTMLSource();' + grunt.util.linefeed;
 
   js += 'var tmpl = {};' + grunt.util.linefeed;
+
+  // Add helper property
+  js += 'tmpl.helpers = {};' + grunt.util.linefeed;
 
   files.map(function(filePath) {
     var template = _this.getFileContent(filePath)
