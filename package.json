@@ -34,7 +34,7 @@
     "test": "bin/test"
   },
   "dependencies": {
-    "dot": "git@github.com:rhumlover/doT.git",
+    "dot": "git://github.com/rhumlover/doT",
     "grunt": "~0.4.1",
     "findup-sync": "~0.1.2",
     "requirejs": "~2.1.5",
